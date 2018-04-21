@@ -1,9 +1,8 @@
 package paniko
 
 import (
-	"net/http"
-
 	"fmt"
+	"net/http"
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"

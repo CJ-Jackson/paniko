@@ -21,11 +21,11 @@ func GetExpiration(context ctx.BackgroundContext) Expiration {
 		return e
 	}
 
-	daysToExpire := config.GetConfig(context).DaysToExpiry
+	daysToExpiry := config.GetConfig(context).DaysToExpiry
 
 	e := &expiration{
-		daysToExpire: daysToExpire,
-		t:            time.Now().AddDate(0, 0, daysToExpire),
+		daysToExpiry: daysToExpiry,
+		t:            time.Now().AddDate(0, 0, daysToExpiry),
 	}
 
 	context.SetCtx(name, e)
@@ -34,7 +34,7 @@ func GetExpiration(context ctx.BackgroundContext) Expiration {
 
 type expiration struct {
 	sync.RWMutex
-	daysToExpire int
+	daysToExpiry int
 	t            time.Time
 }
 
@@ -56,7 +56,7 @@ func (e *expiration) Reset() {
 	e.Lock()
 	defer e.Unlock()
 
-	e.t = time.Now().AddDate(0, 0, e.daysToExpire)
+	e.t = time.Now().AddDate(0, 0, e.daysToExpiry)
 }
 
 func (e *expiration) Expire() {

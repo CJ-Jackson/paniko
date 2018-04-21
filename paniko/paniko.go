@@ -2,6 +2,7 @@ package paniko
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/CJ-Jackson/ctx"
@@ -11,13 +12,13 @@ import (
 func Boot() {
 	context := ctx.NewBackgroundContext()
 
-	{
-		muxer := common.GetMuxer(context)
+	startServer(":8080", common.GetMuxer(context))
+}
 
-		fmt.Println("Running Server at :8080")
-		http.ListenAndServe(":8080", http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-			req, _ = ctx.NewContext(req, res)
-			muxer.ServeHTTP(res, req)
-		}))
-	}
+func startServer(address string, handler http.Handler) {
+	fmt.Println("Running Server at", address)
+	log.Print(http.ListenAndServe(address, http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		req, _ = ctx.NewContext(req, res)
+		handler.ServeHTTP(res, req)
+	})))
 }

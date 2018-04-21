@@ -7,12 +7,13 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/CJ-Jackson/paniko/paniko/config"
 )
 
 func Boot() {
 	context := ctx.NewBackgroundContext()
 
-	startServer(":8080", common.GetMuxer(context))
+	startServer(config.GetParam(context).Address, common.GetMuxer(context))
 }
 
 func startServer(address string, handler http.Handler) {

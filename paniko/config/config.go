@@ -9,7 +9,7 @@ import (
 )
 
 type Config struct {
-	DaysToExpiry int64
+	DaysToExpiry int
 	Mail         Mail
 }
 

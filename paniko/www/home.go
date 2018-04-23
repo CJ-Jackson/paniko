@@ -29,7 +29,7 @@ func (c HomeController) Index(context ctx.Context) {
 func (c HomeController) IAmAlive(context ctx.Context) {
 	c.expiration.Reset()
 	c.homeView.Json(context, JsonData{
-		Alert: "",
+		Alert: "Alive",
 		When:  c.expiration.GetTime().Format(time.RFC1123),
 	})
 }
@@ -37,7 +37,7 @@ func (c HomeController) IAmAlive(context ctx.Context) {
 func (c HomeController) InDanger(context ctx.Context) {
 	c.expiration.Expire()
 	c.homeView.Json(context, JsonData{
-		Alert: "",
+		Alert: "In Danger",
 		When:  c.expiration.GetTime().Format(time.RFC1123),
 	})
 }

@@ -32,9 +32,9 @@ func NewHomeView(context ctx.BackgroundContext) HomeView {
 
 <code>Expires: <span id="expiry">{{ $index.Expiry }}</span> <span id="alert"></span></code>
 
-<div class="report btn btn-success mt-3 mb-3" data-confirm="false" data-uri='{{ $uri.Print "IAmAlive" }}' style="width: 100%">I am Alive</div>
+<div class="clickReport btn btn-success mt-3 mb-3" data-confirm="false" data-uri='{{ $uri.Print "IAmAlive" }}' style="width: 100%">I am Alive</div>
 
-<div class="report btn btn-danger" data-confirm="true" data-uri='{{ $uri.Print "InDanger" }}' style="width: 100%">In Danger</div>
+<div class="clickReport btn btn-danger" data-confirm="true" data-uri='{{ $uri.Print "InDanger" }}' style="width: 100%">In Danger</div>
 
 <p class="mt-3">If the system expires, an email will be sent out to the authority every hour.</p>
 {{- end }}
@@ -42,7 +42,7 @@ func NewHomeView(context ctx.BackgroundContext) HomeView {
 {{ define "js" }}
 <script type="application/javascript">
 	(function($) {
-	    $('.report').on('click', function() {
+	    $('.clickReport').on('click', function() {
 	        var doConfirm = $(this).data('confirm');
 	        var uri = $(this).data('uri');
 	        

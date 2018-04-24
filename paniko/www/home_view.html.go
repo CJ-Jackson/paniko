@@ -31,7 +31,7 @@ type HomeViewIndexData struct {
 const indexTemplate = `{{ define "content" }}{{- $index := index . -}}{{- $uri := indexUri -}}
 <p>Hello, please report by pressing a button</p>
 
-<code>Expires: <span id="expiry">{{ $index.Expiry }}</span> <span id="alert"></span></code>
+<pre>Expires: <span id="expiry">{{ $index.Expiry }}</span> <span id="alert"></span></pre>
 
 <div class="clickReport btn btn-success mt-3 mb-3" data-confirm="false" data-uri='{{ $uri.Print "IAmAlive" }}' style="width: 100%">I am Alive</div>
 
@@ -54,9 +54,9 @@ const indexTemplate = `{{ define "content" }}{{- $index := index . -}}{{- $uri :
 				    data = $.parseJSON(data);
 				    $('#expiry').text(data.When);
 				    $('#alert').text(data.Alert);
-				})
+				});
 	        }
-	    })
+	    });
 	})(jQuery);
 </script>
 {{ end }}`

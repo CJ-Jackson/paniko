@@ -13,7 +13,6 @@ type HomeController struct {
 }
 
 func NewHomeController(context ctx.BackgroundContext) HomeController {
-
 	return HomeController{
 		homeView:   NewHomeView(context),
 		expiration: expiration.GetExpiration(context),

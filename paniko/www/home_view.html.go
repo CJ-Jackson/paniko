@@ -17,9 +17,7 @@ func buildIndexTemplate(context ctx.BackgroundContext) *template.Template {
 	}
 
 	funcMaps := template.FuncMap{
-		"index": func(context ctx.Context) HomeViewIndexData {
-			return context.Data(indexName).(HomeViewIndexData)
-		},
+		"index":    func(context ctx.Context) HomeViewIndexData { return context.Data(indexName).(HomeViewIndexData) },
 		"indexUri": func() uri.Reverse { return indexUriReverse },
 	}
 
@@ -62,8 +60,3 @@ const indexTemplate = `{{ define "content" }}{{- $index := index . -}}{{- $uri :
 	})(jQuery);
 </script>
 {{ end }}`
-
-type JsonData struct {
-	Alert string
-	When  string
-}

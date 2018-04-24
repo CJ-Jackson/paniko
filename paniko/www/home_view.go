@@ -1,9 +1,8 @@
 package www
 
 import (
-	"html/template"
-
 	"encoding/json"
+	"html/template"
 
 	"github.com/CJ-Jackson/ctx"
 )

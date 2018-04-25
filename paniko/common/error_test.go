@@ -10,13 +10,13 @@ import (
 )
 
 func TestErrorService(t *testing.T) {
-	type testErrorService struct {
+	type mocks struct {
 		log *MockLogger
 	}
 
-	let := func(t *testing.T) (testErrorService, errorService) {
+	let := func(t *testing.T) (mocks, errorService) {
 		ctrl := gomock.NewController(t)
-		mocks := testErrorService{
+		mocks := mocks{
 			log: NewMockLogger(ctrl),
 		}
 

@@ -8,7 +8,8 @@ import (
 )
 
 type Param struct {
-	Address string
+	Address    string
+	Production bool
 }
 
 func GetParam(context ctx.BackgroundContext) Param {
@@ -18,13 +19,17 @@ func GetParam(context ctx.BackgroundContext) Param {
 	}
 
 	param := &Param{
-		Address: ":8080",
+		Address:    ":8080",
+		Production: false,
 	}
 
 	options := command.BuildOptions(os.Args[1:])
 
 	options.ExecOption("address", func(strings []string) {
 		param.Address = strings[0]
+	})
+	options.ExecOption("prod", func(_ []string) {
+		param.Production = true
 	})
 
 	context.SetCtx(name, *param)

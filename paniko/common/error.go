@@ -5,7 +5,6 @@ package common
 
 import (
 	"log"
-
 	"os"
 
 	"github.com/CJ-Jackson/ctx"

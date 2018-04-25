@@ -9,12 +9,14 @@ import (
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/config"
 	"github.com/CJ-Jackson/paniko/paniko/www"
+	"github.com/CJ-Jackson/paniko/paniko/www/errors"
 )
 
 func Boot() {
 	context := ctx.NewBackgroundContext()
 
 	www.Boot(context)
+	errors.Boot(context)
 
 	startServer(config.GetParam(context).Address, common.GetMuxer(context))
 }

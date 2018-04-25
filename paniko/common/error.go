@@ -7,6 +7,8 @@ import (
 	"log"
 	"os"
 
+	"net/http"
+
 	"github.com/CJ-Jackson/ctx"
 )
 
@@ -55,4 +57,43 @@ func GetErrorService(context ctx.BackgroundContext) ErrorService {
 
 	context.SetCtx(name, _ErrorService)
 	return _ErrorService
+}
+
+type NoError struct{}
+
+func Halt() {
+	panic(NoError{})
+}
+
+type HttpError struct {
+	Code    int
+	Message string
+}
+
+func HaltNotFound(message string) {
+	panic(HttpError{
+		Code:    http.StatusNotFound,
+		Message: message,
+	})
+}
+
+func HaltForbidden(message string) {
+	panic(HttpError{
+		Code:    http.StatusForbidden,
+		Message: message,
+	})
+}
+
+func HaltInternalServerError(message string) {
+	panic(HttpError{
+		Code:    http.StatusInternalServerError,
+		Message: message,
+	})
+}
+
+func HaltCustomNoError(code int, message string) {
+	panic(HttpError{
+		Code:    code,
+		Message: message,
+	})
 }

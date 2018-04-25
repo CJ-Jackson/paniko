@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=expiration -source=expiration.go -destination=expiration.mock.go
+//go:generate debugflag expiration.mock.go
+
 package expiration
 
 import (

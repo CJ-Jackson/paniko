@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=www -source=home_view.go -destination=home_view.mock.go
+//go:generate debugflag home_view.mock.go
+
 package www
 
 import (

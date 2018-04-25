@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=common -source=error.go -destination=error.mock.go
+//go:generate debugflag error.mock.go
+
 package common
 
 import (

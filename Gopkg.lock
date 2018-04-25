@@ -8,14 +8,26 @@
   revision = "f382c5b37a9e8c4f1addc7287e9b5572ae232a4c"
 
 [[projects]]
+  name = "github.com/golang/mock"
+  packages = ["gomock"]
+  revision = "c34cdb4725f4c3844d095133c6e40e448b86589b"
+  version = "v1.1.1"
+
+[[projects]]
   name = "github.com/julienschmidt/httprouter"
   packages = ["."]
   revision = "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
   version = "v1.1"
 
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = ["context"]
+  revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a99eff72ed90965a248cb9f490ff5fd7db9c701089645a89c0b12fcedf63e9cb"
+  inputs-digest = "2ba9a2b56bbef34dcc26e760acc0939928b210120d3544880ffb05bf76e963cc"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -91,7 +91,7 @@ func HaltInternalServerError(message string) {
 	})
 }
 
-func HaltCustomNoError(code int, message string) {
+func HaltCustomError(code int, message string) {
 	panic(HttpError{
 		Code:    code,
 		Message: message,

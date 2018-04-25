@@ -17,7 +17,7 @@ type ErrorTemplateData struct {
 func buildErrorTemplate() *template.Template {
 	funcMaps := template.FuncMap{
 		"error": func(context ctx.Context) ErrorTemplateData {
-			return context.Dep(errorTemplateDataName).(ErrorTemplateData)
+			return context.Data(errorTemplateDataName).(ErrorTemplateData)
 		},
 	}
 

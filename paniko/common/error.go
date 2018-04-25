@@ -5,9 +5,8 @@ package common
 
 import (
 	"log"
-	"os"
-
 	"net/http"
+	"os"
 
 	"github.com/CJ-Jackson/ctx"
 )

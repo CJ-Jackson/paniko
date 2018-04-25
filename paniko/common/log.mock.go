@@ -6,8 +6,9 @@
 package common
 
 import (
-	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockLogger is a mock of Logger interface
@@ -33,7 +34,7 @@ func (m *MockLogger) EXPECT() *MockLoggerMockRecorder {
 	return m.recorder
 }
 
-// Panic mocks base method
+// Panic Mocks base method
 func (m *MockLogger) Panic(v ...interface{}) {
 	varargs := []interface{}{}
 	for _, a := range v {
@@ -47,7 +48,7 @@ func (mr *MockLoggerMockRecorder) Panic(v ...interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Panic", reflect.TypeOf((*MockLogger)(nil).Panic), v...)
 }
 
-// Panicf mocks base method
+// Panicf Mocks base method
 func (m *MockLogger) Panicf(format string, v ...interface{}) {
 	varargs := []interface{}{format}
 	for _, a := range v {
@@ -62,7 +63,7 @@ func (mr *MockLoggerMockRecorder) Panicf(format interface{}, v ...interface{}) *
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Panicf", reflect.TypeOf((*MockLogger)(nil).Panicf), varargs...)
 }
 
-// Panicln mocks base method
+// Panicln Mocks base method
 func (m *MockLogger) Panicln(v ...interface{}) {
 	varargs := []interface{}{}
 	for _, a := range v {
@@ -76,7 +77,7 @@ func (mr *MockLoggerMockRecorder) Panicln(v ...interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Panicln", reflect.TypeOf((*MockLogger)(nil).Panicln), v...)
 }
 
-// Print mocks base method
+// Print Mocks base method
 func (m *MockLogger) Print(v ...interface{}) {
 	varargs := []interface{}{}
 	for _, a := range v {
@@ -90,7 +91,7 @@ func (mr *MockLoggerMockRecorder) Print(v ...interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Print", reflect.TypeOf((*MockLogger)(nil).Print), v...)
 }
 
-// Printf mocks base method
+// Printf Mocks base method
 func (m *MockLogger) Printf(format string, v ...interface{}) {
 	varargs := []interface{}{format}
 	for _, a := range v {
@@ -105,7 +106,7 @@ func (mr *MockLoggerMockRecorder) Printf(format interface{}, v ...interface{}) *
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Printf", reflect.TypeOf((*MockLogger)(nil).Printf), varargs...)
 }
 
-// Println mocks base method
+// Println Mocks base method
 func (m *MockLogger) Println(v ...interface{}) {
 	varargs := []interface{}{}
 	for _, a := range v {

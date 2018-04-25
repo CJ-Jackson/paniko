@@ -6,8 +6,9 @@
 package common
 
 import (
-	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockErrorService is a mock of ErrorService interface
@@ -33,7 +34,7 @@ func (m *MockErrorService) EXPECT() *MockErrorServiceMockRecorder {
 	return m.recorder
 }
 
-// CheckErrorAndPanic mocks base method
+// CheckErrorAndPanic Mocks base method
 func (m *MockErrorService) CheckErrorAndPanic(err error) {
 	m.ctrl.Call(m, "CheckErrorAndPanic", err)
 }
@@ -43,7 +44,7 @@ func (mr *MockErrorServiceMockRecorder) CheckErrorAndPanic(err interface{}) *gom
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckErrorAndPanic", reflect.TypeOf((*MockErrorService)(nil).CheckErrorAndPanic), err)
 }
 
-// CheckErrorAndLog mocks base method
+// CheckErrorAndLog Mocks base method
 func (m *MockErrorService) CheckErrorAndLog(err error) {
 	m.ctrl.Call(m, "CheckErrorAndLog", err)
 }

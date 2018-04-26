@@ -31,10 +31,10 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 		}
 
 		csrfProtect(http.HandlerFunc(func(_ http.ResponseWriter, req *http.Request) {
-			context.SetData(shared.CsrfDataName, csrfData{
+			context.SetData(shared.CsrfDataName, shared.Csrf(csrfData{
 				tokenField: csrf.TemplateField(req),
 				token:      csrf.Token(req),
-			})
+			}))
 		})).ServeHTTP(context.Response(), context.Request())
 	}
 

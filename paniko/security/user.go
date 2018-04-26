@@ -56,7 +56,7 @@ func GetUserController(context ctx.BackgroundContext) userController {
 	} else {
 		defer file.Close()
 
-		err = json.NewDecoder(file).Decode(users)
+		err = json.NewDecoder(file).Decode(&users)
 		errorService.CheckErrorAndPanic(err)
 	}
 

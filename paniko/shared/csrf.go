@@ -21,3 +21,7 @@ func GetCsrf(context ctx.Context) Csrf {
 	context.Dep(CsrfInitName).(common.ContextHandler)(context)
 	return context.Data(CsrfDataName).(Csrf)
 }
+
+func CheckCsrf(context ctx.Context) {
+	context.Dep(CsrfInitName).(common.ContextHandler)(context)
+}

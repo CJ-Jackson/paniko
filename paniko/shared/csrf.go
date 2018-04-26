@@ -18,7 +18,7 @@ type Csrf interface {
 }
 
 func GetCsrf(context ctx.Context) Csrf {
-	context.Dep(CsrfInitName).(common.ContextHandler)(context)
+	CheckCsrf(context)
 	return context.Data(CsrfDataName).(Csrf)
 }
 

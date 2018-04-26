@@ -13,6 +13,7 @@ type Config struct {
 	CsrfKey      string
 	Mail         Mail
 	Password     Password
+	Cookie       Cookie
 }
 
 type Mail struct {
@@ -24,6 +25,11 @@ type Mail struct {
 type Password struct {
 	Salt     string
 	Location string
+}
+
+type Cookie struct {
+	HashKey  string
+	BlockKey string
 }
 
 func GetConfig(context ctx.BackgroundContext) Config {
@@ -39,12 +45,14 @@ func GetConfig(context ctx.BackgroundContext) Config {
 	}
 	location := os.Getenv("HOME") + "/.config/paniko/config.json"
 
+	errorService := common.GetErrorService(context)
+
 	file, err := os.Open(location)
-	common.CheckErrorAndExit(err)
+	errorService.CheckErrorAndPanic(err)
 	defer file.Close()
 
 	err = json.NewDecoder(file).Decode(&config)
-	common.CheckErrorAndExit(err)
+	errorService.CheckErrorAndPanic(err)
 
 	context.SetCtx(name, config)
 	return config

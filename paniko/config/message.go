@@ -16,11 +16,13 @@ func GetMessage(context ctx.BackgroundContext) string {
 
 	location := os.Getenv("HOME") + "/.config/paniko/message.txt"
 
+	errorService := common.GetErrorService(context)
+
 	file, err := os.Open(location)
-	common.CheckErrorAndExit(err)
+	errorService.CheckErrorAndPanic(err)
 
 	b, err := ioutil.ReadAll(file)
-	common.CheckErrorAndExit(err)
+	errorService.CheckErrorAndPanic(err)
 
 	message := string(b)
 

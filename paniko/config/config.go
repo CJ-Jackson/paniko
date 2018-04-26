@@ -10,8 +10,9 @@ import (
 
 type Config struct {
 	DaysToExpiry int
-	Mail         Mail
 	CsrfKey      string
+	Mail         Mail
+	Password     Password
 }
 
 type Mail struct {
@@ -20,13 +21,22 @@ type Mail struct {
 	Subject string
 }
 
+type Password struct {
+	Salt     string
+	Location string
+}
+
 func GetConfig(context ctx.BackgroundContext) Config {
 	name := "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
 	if config, ok := context.Ctx(name).(Config); ok {
 		return config
 	}
 
-	config := Config{}
+	config := Config{
+		Password: Password{
+			Location: os.Getenv("HOME") + "/.config/paniko/password.json",
+		},
+	}
 	location := os.Getenv("HOME") + "/.config/paniko/config.json"
 
 	file, err := os.Open(location)

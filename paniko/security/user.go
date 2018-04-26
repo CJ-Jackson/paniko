@@ -1,14 +1,13 @@
+//go:generate mockgen -write_package_comment=false -package=security -source=user.go -destination=user.mock.go
+//go:generate debugflag user.mock.go
+
 package security
 
 import (
-	"os"
-
 	"encoding/json"
-
-	"strings"
-
 	"net/http"
-
+	"os"
+	"strings"
 	"time"
 
 	"github.com/CJ-Jackson/ctx"
@@ -97,11 +96,11 @@ func (c userController) CheckCookie(context ctx.Context) shared.User {
 
 func (c userController) GetDep() common.ContextHandler {
 	return func(context ctx.Context) {
-		if _, ok := context.Data(shared.UserDepData).(shared.User); ok {
+		if _, ok := context.Data(shared.UserDataName).(shared.User); ok {
 			return
 		}
 
-		context.SetData(shared.UserDepData, c.CheckCookie(context))
+		context.SetData(shared.UserDataName, c.CheckCookie(context))
 	}
 }
 

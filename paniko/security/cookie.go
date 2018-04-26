@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=security -source=cookie.go -destination=cookie.mock.go
+//go:generate debugflag cookie.mock.go
+
 package security
 
 import (

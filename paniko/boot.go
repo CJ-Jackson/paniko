@@ -25,9 +25,11 @@ func Boot() {
 
 func getContextBoot(context ctx.BackgroundContext) common.ContextHandler {
 	csrfHandler := security.GetCsrf(context)
+	userDep := security.GetUserController(context).GetDep()
 
 	return func(context ctx.Context) {
 		context.SetDep(shared.CsrfInitName, csrfHandler)
+		context.SetDep(shared.UserDepName, userDep)
 	}
 }
 

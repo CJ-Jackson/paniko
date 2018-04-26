@@ -14,10 +14,34 @@
   version = "v1.1.1"
 
 [[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
+  version = "v1.1"
+
+[[projects]]
+  name = "github.com/gorilla/csrf"
+  packages = ["."]
+  revision = "69581736821c33d85bbf378f42f6ad864dbd85de"
+  version = "v1.5"
+
+[[projects]]
+  name = "github.com/gorilla/securecookie"
+  packages = ["."]
+  revision = "e59506cc896acb7f7bf732d4fdf5e25f7ccd8983"
+  version = "v1.1.1"
+
+[[projects]]
   name = "github.com/julienschmidt/httprouter"
   packages = ["."]
   revision = "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
   version = "v1.1"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
 
 [[projects]]
   branch = "master"
@@ -28,6 +52,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "98e9922c556bf0be84ffd51b04e360691b79fbd55b9ff419ea27a3e280d2ce7f"
+  inputs-digest = "fd3d81127ab6280fe81835b76427e5fadbab4095c1c8f193bcfb1146991646f5"
   solver-name = "gps-cdcl"
   solver-version = 1

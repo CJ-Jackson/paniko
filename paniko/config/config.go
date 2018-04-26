@@ -11,6 +11,7 @@ import (
 type Config struct {
 	DaysToExpiry int
 	Mail         Mail
+	CsrfKey      string
 }
 
 type Mail struct {

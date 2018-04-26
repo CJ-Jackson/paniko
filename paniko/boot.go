@@ -8,6 +8,8 @@ import (
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/config"
+	"github.com/CJ-Jackson/paniko/paniko/security"
+	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/CJ-Jackson/paniko/paniko/www"
 	"github.com/CJ-Jackson/paniko/paniko/www/errors"
 )
@@ -18,13 +20,22 @@ func Boot() {
 	www.Boot(context)
 	errors.Boot(context)
 
-	startServer(config.GetParam(context).Address, common.GetMuxer(context))
+	startServer(config.GetParam(context).Address, common.GetMuxer(context), getContextBoot(context))
 }
 
-func startServer(address string, handler http.Handler) {
+func getContextBoot(context ctx.BackgroundContext) common.ContextHandler {
+	csrfHandler := security.GetCsrf(context)
+
+	return func(context ctx.Context) {
+		context.SetDep(shared.CsrfInitName, csrfHandler)
+	}
+}
+
+func startServer(address string, handler http.Handler, boot common.ContextHandler) {
 	fmt.Println("Running Server at", address)
 	log.Print(http.ListenAndServe(address, http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		req, _ = ctx.NewContext(req, res)
+		req, context := ctx.NewContext(req, res)
+		boot(context)
 		handler.ServeHTTP(res, req)
 	})))
 }

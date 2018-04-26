@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=common -source=password.go -destination=password.mock.go
+//go:generate debugflag password.mock.go
+
 package common
 
 import (

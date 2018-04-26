@@ -21,12 +21,15 @@ func bootError(controller ErrorController, muxer *httprouter.Router) {
 		showError(req, http.StatusMethodNotAllowed, "Router found path, but however method is not allowed")
 	}
 
-	muxer.PanicHandler = func(_ http.ResponseWriter, req *http.Request, i interface{}) {
+	muxer.PanicHandler = func(res http.ResponseWriter, req *http.Request, i interface{}) {
 		switch i := i.(type) {
 		case common.NoError:
 			// Do nothing
 		case common.HttpError:
 			showError(req, i.Code, i.Message)
+		case common.HttpRedirectError:
+			res.Header().Set("Location", i.Location)
+			res.WriteHeader(i.Code)
 		default:
 			showError(req, http.StatusInternalServerError, fmt.Sprint(i))
 		}

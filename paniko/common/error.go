@@ -96,3 +96,22 @@ func HaltCustomError(code int, message string) {
 		Message: message,
 	})
 }
+
+type HttpRedirectError struct {
+	Code     int
+	Location string
+}
+
+func HaltMovedPermanently(location string) {
+	panic(HttpRedirectError{
+		Code:     http.StatusMovedPermanently,
+		Location: location,
+	})
+}
+
+func HaltSeeOther(location string) {
+	panic(HttpRedirectError{
+		Code:     http.StatusSeeOther,
+		Location: location,
+	})
+}

@@ -14,10 +14,11 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 	{
 		muxer.GET(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
+			shared.CheckIfGuest(context)
 			shared.InitCsrf(context)
 
 			controller.ShowLogin(context, LoginForm{
-				Uri:      request.Header.Get("Referer"),
+				Uri:      "/",
 				Username: "",
 				Password: "",
 				Attempt:  false,
@@ -25,12 +26,13 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 		})
 		muxer.POST(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
+			shared.CheckIfGuest(context)
 			request = context.Request()
 			request.ParseForm()
 			shared.CheckCsrf(context)
 
 			controller.DoLogin(context, LoginForm{
-				Uri:      request.PostForm.Get("uri"),
+				Uri:      "/",
 				Username: request.PostForm.Get("username"),
 				Password: request.PostForm.Get("password"),
 				Attempt:  true,
@@ -42,6 +44,8 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 	{
 		muxer.GET(uri.Logout, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
+			shared.CheckIfUser(context)
+
 			controller.DoLogout(context)
 		})
 	}

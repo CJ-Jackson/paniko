@@ -14,6 +14,7 @@ func buildIndexTemplate(context ctx.BackgroundContext) *template.Template {
 	indexUriReverse := uri.Reverse{
 		"IAmAlive": uri.IAmAlive,
 		"InDanger": uri.InDanger,
+		"LogOut":   uri.Logout,
 	}
 
 	funcMaps := template.FuncMap{
@@ -38,6 +39,8 @@ const indexTemplate = `{{ define "content" }}{{- $index := index . -}}{{- $uri :
 <div class="clickReport btn btn-danger" data-confirm="true" data-uri='{{ $uri.Print "InDanger" }}' style="width: 100%">In Danger</div>
 
 <p class="mt-3">If the system expires, an email will be sent out to the authority every hour.</p>
+
+<a href='{{ $uri.Print "LogOut" }}' class="btn btn-secondary mt-3" style="width: 100%">Logout</a>
 {{- end }}
 
 {{ define "js" }}

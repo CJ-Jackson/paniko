@@ -12,6 +12,7 @@ import (
 	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/CJ-Jackson/paniko/paniko/www"
 	"github.com/CJ-Jackson/paniko/paniko/www/errors"
+	"github.com/CJ-Jackson/paniko/paniko/www/login"
 )
 
 func Boot() {
@@ -19,6 +20,7 @@ func Boot() {
 
 	www.Boot(context)
 	errors.Boot(context)
+	login.Boot(context)
 
 	startServer(config.GetParam(context).Address, common.GetMuxer(context), getContextBoot(context))
 }

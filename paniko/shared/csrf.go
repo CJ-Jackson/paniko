@@ -18,10 +18,14 @@ type Csrf interface {
 }
 
 func GetCsrf(context ctx.Context) Csrf {
-	CheckCsrf(context)
+	InitCsrf(context)
 	return context.Data(CsrfDataName).(Csrf)
 }
 
 func CheckCsrf(context ctx.Context) {
+	InitCsrf(context)
+}
+
+func InitCsrf(context ctx.Context) {
 	context.Dep(CsrfInitName).(common.ContextHandler)(context)
 }

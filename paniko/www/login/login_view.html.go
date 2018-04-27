@@ -27,7 +27,7 @@ const loginTemplate = `{{ define "content" }}{{ $form := form . }}{{ $csrf := cs
 
 <form method="post">
 	{{ $csrf.TokenField }}
-	<input type="hidden" name="uri" value="/{{ $form.Uri }}">
+	<input type="hidden" name="uri" value="{{ $form.Uri }}">
 	<div class="form-group">
 		<label for="username">Username</label>
 		<input class="form-control" type="text" value="" name="username" id="username">

@@ -13,7 +13,7 @@ func homeBoot(homeController HomeController, muxer *httprouter.Router) {
 	{
 		muxer.GET(uri.Home, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
-			shared.ChechIfUser(context)
+			shared.CheckIfUser(context)
 
 			homeController.Index(context)
 		})
@@ -22,7 +22,7 @@ func homeBoot(homeController HomeController, muxer *httprouter.Router) {
 	{
 		muxer.PUT(uri.IAmAlive, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
-			shared.ChechIfUser(context)
+			shared.CheckIfUser(context)
 
 			homeController.IAmAlive(context)
 		})
@@ -31,7 +31,7 @@ func homeBoot(homeController HomeController, muxer *httprouter.Router) {
 	{
 		muxer.PUT(uri.InDanger, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
-			shared.ChechIfUser(context)
+			shared.CheckIfUser(context)
 
 			homeController.InDanger(context)
 		})

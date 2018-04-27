@@ -1,3 +1,6 @@
+//go:generate mockgen -write_package_comment=false -package=login -source=login_view.go -destination=login_view.mock.go
+//go:generate debugflag login_view.mock.go
+
 package login
 
 import (

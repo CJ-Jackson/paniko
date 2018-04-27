@@ -4,6 +4,7 @@ import (
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/security"
+	"github.com/CJ-Jackson/paniko/paniko/uri"
 )
 
 type LoginController struct {
@@ -28,4 +29,9 @@ func (c LoginController) DoLogin(context ctx.Context, form LoginForm) {
 	}
 
 	c.ShowLogin(context, form)
+}
+
+func (c LoginController) DoLogout(context ctx.Context) {
+	c.userController.Logout(context)
+	common.HaltSeeOther(uri.Login)
 }

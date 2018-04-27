@@ -5,4 +5,5 @@ const (
 	IAmAlive = "/iamalive"
 	InDanger = "/indanger"
 	Login    = "/login"
+	Logout   = "/logout"
 )

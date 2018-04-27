@@ -10,6 +10,7 @@ import (
 )
 
 func bootLogin(controller LoginController, muxer *httprouter.Router) {
+	// Log In
 	{
 		muxer.GET(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
@@ -34,6 +35,14 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 				Password: request.PostForm.Get("password"),
 				Attempt:  true,
 			})
+		})
+	}
+
+	// Log out
+	{
+		muxer.GET(uri.Logout, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+			context := ctx.GetContext(request)
+			controller.DoLogout(context)
 		})
 	}
 }

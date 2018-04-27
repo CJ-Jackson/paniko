@@ -91,3 +91,13 @@ func (m *MockUserController) Save() {
 func (mr *MockUserControllerMockRecorder) Save() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Save", reflect.TypeOf((*MockUserController)(nil).Save))
 }
+
+// Logout mocks base method
+func (m *MockUserController) Logout(context ctx.Context) {
+	m.ctrl.Call(m, "Logout", context)
+}
+
+// Logout indicates an expected call of Logout
+func (mr *MockUserControllerMockRecorder) Logout(context interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Logout", reflect.TypeOf((*MockUserController)(nil).Logout), context)
+}

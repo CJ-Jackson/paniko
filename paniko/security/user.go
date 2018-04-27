@@ -24,6 +24,7 @@ type UserController interface {
 	Login(context ctx.Context, username, password string) bool
 	UpdateUser(username, password string)
 	Save()
+	Logout(context ctx.Context)
 }
 
 type userController struct {
@@ -128,4 +129,8 @@ func (c userController) Save() {
 
 	err = json.NewEncoder(file).Encode(c.users)
 	c.errorService.CheckErrorAndPanic(err)
+}
+
+func (c userController) Logout(context ctx.Context) {
+	c.cookieHelper.Delete(context, userCookieName)
 }

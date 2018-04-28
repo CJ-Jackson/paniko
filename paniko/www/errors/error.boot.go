@@ -6,6 +6,7 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -15,9 +16,11 @@ func bootError(controller ErrorController, muxer *httprouter.Router) {
 	}
 
 	muxer.NotFound = func(_ http.ResponseWriter, req *http.Request) {
+		shared.CheckIfUser(ctx.GetContext(req))
 		showError(req, http.StatusNotFound, "Router could not find path")
 	}
 	muxer.MethodNotAllowed = func(_ http.ResponseWriter, req *http.Request) {
+		shared.CheckIfUser(ctx.GetContext(req))
 		showError(req, http.StatusMethodNotAllowed, "Router found path, but however method is not allowed")
 	}
 

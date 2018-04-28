@@ -14,14 +14,12 @@ type Password interface {
 }
 
 type password struct {
-	salt         string
-	errorService ErrorService
+	salt string
 }
 
-func NewPassword(salt string, errorService ErrorService) Password {
+func NewPassword(salt string) Password {
 	return password{
-		salt:         salt,
-		errorService: errorService,
+		salt: salt,
 	}
 }
 

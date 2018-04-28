@@ -40,7 +40,7 @@ func GetUserController(context ctx.BackgroundContext) userController {
 
 	passwordCfg := config.GetConfig(context).Password
 	errorService := common.GetErrorService(context)
-	password := common.NewPassword(passwordCfg.Salt, errorService)
+	password := common.NewPassword(passwordCfg.Salt)
 
 	users := map[string]string{
 		"admin": password.SaltPassword("password"),

@@ -17,11 +17,18 @@ func GetConfig(context ctx.BackgroundContext) config.Base {
 	configVar := config.Base{
 		DaysToExpiry: 7,
 		CsrfKey:      "",
-		Mail:         config.Mail{},
+		Mail: config.Mail{
+			SendTo:  []string{},
+			SendCc:  []string{},
+			Subject: "",
+		},
 		Password: config.Password{
 			Location: os.Getenv("HOME") + "/.config/paniko/password.json",
 		},
-		Cookie: config.Cookie{},
+		Cookie: config.Cookie{
+			HashKey:  "",
+			BlockKey: "",
+		},
 	}
 	location := os.Getenv("HOME") + "/.config/paniko/config.json"
 

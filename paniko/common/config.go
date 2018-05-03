@@ -8,13 +8,13 @@ import (
 	"github.com/CJ-Jackson/paniko/paniko/common/config"
 )
 
-func GetConfig(context ctx.BackgroundContext) config.Config {
+func GetConfig(context ctx.BackgroundContext) config.Base {
 	const name = "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
-	if config, ok := context.Ctx(name).(config.Config); ok {
+	if config, ok := context.Ctx(name).(config.Base); ok {
 		return config
 	}
 
-	config := config.Config{
+	config := config.Base{
 		Password: config.Password{
 			Location: os.Getenv("HOME") + "/.config/paniko/password.json",
 		},

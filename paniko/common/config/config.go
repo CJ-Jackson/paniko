@@ -1,6 +1,6 @@
 package config
 
-type Config struct {
+type Base struct {
 	DaysToExpiry int
 	CsrfKey      string
 	Mail         Mail

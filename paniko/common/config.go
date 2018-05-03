@@ -10,14 +10,18 @@ import (
 
 func GetConfig(context ctx.BackgroundContext) config.Base {
 	const name = "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
-	if config, ok := context.Ctx(name).(config.Base); ok {
-		return config
+	if configVar, ok := context.Ctx(name).(config.Base); ok {
+		return configVar
 	}
 
-	config := config.Base{
+	configVar := config.Base{
+		DaysToExpiry: 7,
+		CsrfKey:      "",
+		Mail:         config.Mail{},
 		Password: config.Password{
 			Location: os.Getenv("HOME") + "/.config/paniko/password.json",
 		},
+		Cookie: config.Cookie{},
 	}
 	location := os.Getenv("HOME") + "/.config/paniko/config.json"
 
@@ -27,9 +31,9 @@ func GetConfig(context ctx.BackgroundContext) config.Base {
 	errorService.CheckErrorAndPanic(err)
 	defer file.Close()
 
-	err = json.NewDecoder(file).Decode(&config)
+	err = json.NewDecoder(file).Decode(&configVar)
 	errorService.CheckErrorAndPanic(err)
 
-	context.SetCtx(name, config)
-	return config
+	context.SetCtx(name, configVar)
+	return configVar
 }

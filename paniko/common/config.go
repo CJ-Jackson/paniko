@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"os"
 
+	"net/mail"
+
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common/config"
 )
@@ -18,9 +20,14 @@ func GetConfig(context ctx.BackgroundContext) config.Base {
 		DaysToExpiry: 7,
 		CsrfKey:      "",
 		Mail: config.Mail{
-			SendTo:  []string{},
-			SendCc:  []string{},
-			Subject: "",
+			Username: "",
+			Password: "",
+			Hostname: "",
+			Port:     25,
+			From:     mail.Address{},
+			SendTo:   []mail.Address{},
+			SendCc:   []mail.Address{},
+			Subject:  "",
 		},
 		Password: config.Password{
 			Salt:     "",

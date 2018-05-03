@@ -1,5 +1,7 @@
 package config
 
+import "net/mail"
+
 type Base struct {
 	DaysToExpiry int
 	CsrfKey      string
@@ -9,9 +11,14 @@ type Base struct {
 }
 
 type Mail struct {
-	SendTo  []string
-	SendCc  []string
-	Subject string
+	Username string
+	Password string
+	Hostname string
+	Port     int
+	From     mail.Address
+	SendTo   []mail.Address
+	SendCc   []mail.Address
+	Subject  string
 }
 
 type Password struct {

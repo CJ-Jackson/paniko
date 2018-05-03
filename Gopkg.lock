@@ -32,6 +32,12 @@
   version = "v1.1.1"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jpoehls/gophermail"
+  packages = ["."]
+  revision = "62941eab772c480c968feea68faba37f941cc931"
+
+[[projects]]
   name = "github.com/julienschmidt/httprouter"
   packages = ["."]
   revision = "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
@@ -45,6 +51,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/sloonz/go-qprintable"
+  packages = ["."]
+  revision = "775b3a4592d5bfc47b0ba398ec0d4dba018e5926"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/net"
   packages = ["context"]
   revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
@@ -52,6 +64,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "867ebb4b10cae0b4f4645c494efa2fb1645a46cd812535ebef58b19f3776cf44"
+  inputs-digest = "8ef1ca23ae4a005ef30cccc1da83edca6ef993593c8b622213622de292696430"
   solver-name = "gps-cdcl"
   solver-version = 1

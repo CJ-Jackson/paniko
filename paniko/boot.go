@@ -7,6 +7,7 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/CJ-Jackson/paniko/paniko/mail"
 	"github.com/CJ-Jackson/paniko/paniko/security"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/CJ-Jackson/paniko/paniko/www"
@@ -20,6 +21,8 @@ func Boot() {
 	www.Boot(context)
 	errors.Boot(context)
 	login.Boot(context)
+
+	mail.Boot(context)
 
 	startServer(common.GetParam(context).Address, common.GetMuxer(context), getContextBoot(context))
 }

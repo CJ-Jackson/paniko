@@ -4,9 +4,8 @@
 package mail
 
 import (
-	"net/smtp"
-
 	"fmt"
+	"net/smtp"
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"

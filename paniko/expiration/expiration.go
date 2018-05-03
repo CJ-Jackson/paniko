@@ -19,7 +19,7 @@ type Expiration interface {
 }
 
 func GetExpiration(context ctx.BackgroundContext) Expiration {
-	name := "expiration-fa22848f098081e710887c8a2b930f07"
+	const name = "expiration-fa22848f098081e710887c8a2b930f07"
 	if e, ok := context.Ctx(name).(Expiration); ok {
 		return e
 	}

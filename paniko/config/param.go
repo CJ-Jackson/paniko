@@ -13,7 +13,7 @@ type Param struct {
 }
 
 func GetParam(context ctx.BackgroundContext) Param {
-	name := "param-7bddb00d1a070092274f0139a7cadcc9"
+	const name = "param-7bddb00d1a070092274f0139a7cadcc9"
 	if param, ok := context.Ctx(name).(Param); ok {
 		return param
 	}

@@ -19,7 +19,7 @@ type CookieHelper interface {
 }
 
 func GetCookieHelper(context ctx.BackgroundContext) CookieHelper {
-	name := "cookie-helper-e0ff25bef45a0649477d9b55231e4cc1"
+	const name = "cookie-helper-e0ff25bef45a0649477d9b55231e4cc1"
 	if cHelper, ok := context.Ctx(name).(CookieHelper); ok {
 		return cHelper
 	}

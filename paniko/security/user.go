@@ -36,7 +36,7 @@ type userController struct {
 }
 
 func GetUserController(context ctx.BackgroundContext) userController {
-	name := "user-cbb169f923ea34417740c8d0cda6bc16"
+	const name = "user-cbb169f923ea34417740c8d0cda6bc16"
 
 	passwordCfg := config.GetConfig(context).Password
 	errorService := common.GetErrorService(context)

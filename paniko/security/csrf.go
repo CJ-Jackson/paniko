@@ -12,7 +12,7 @@ import (
 )
 
 func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
-	name := "csrf-7cf4ddd5429f9237ebd331a9c65498ed"
+	const name = "csrf-7cf4ddd5429f9237ebd331a9c65498ed"
 	if contextHandler, ok := context.Ctx(name).(common.ContextHandler); ok {
 		return contextHandler
 	}

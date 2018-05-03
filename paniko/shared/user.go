@@ -16,12 +16,15 @@ type User interface {
 	CheckIfGuest()
 }
 
-func CheckIfUser(context ctx.Context) {
+func GetUser(context ctx.Context) User {
 	context.Dep(UserDepName).(common.ContextHandler)(context)
-	context.Data(UserDataName).(User).CheckIfUser()
+	return context.Data(UserDataName).(User)
+}
+
+func CheckIfUser(context ctx.Context) {
+	GetUser(context).CheckIfUser()
 }
 
 func CheckIfGuest(context ctx.Context) {
-	context.Dep(UserDepName).(common.ContextHandler)(context)
-	context.Data(UserDataName).(User).CheckIfGuest()
+	GetUser(context).CheckIfGuest()
 }

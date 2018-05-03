@@ -33,7 +33,7 @@ type Cookie struct {
 }
 
 func GetConfig(context ctx.BackgroundContext) Config {
-	name := "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
+	const name = "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
 	if config, ok := context.Ctx(name).(Config); ok {
 		return config
 	}

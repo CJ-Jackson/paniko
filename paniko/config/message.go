@@ -9,7 +9,7 @@ import (
 )
 
 func GetMessage(context ctx.BackgroundContext) string {
-	name := "message-071262aa97887e3b10cf6c00d7462f24"
+	const name = "message-071262aa97887e3b10cf6c00d7462f24"
 	if message, ok := context.Ctx(name).(string); ok {
 		return message
 	}

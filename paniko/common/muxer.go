@@ -6,7 +6,7 @@ import (
 )
 
 func GetMuxer(context ctx.BackgroundContext) *httprouter.Router {
-	name := "muxer-148a5db092ec73a35160dcb667a1fb45"
+	const name = "muxer-148a5db092ec73a35160dcb667a1fb45"
 	if muxer, ok := context.Ctx(name).(*httprouter.Router); ok {
 		return muxer
 	}

@@ -45,7 +45,7 @@ func (e errorService) CheckErrorAndLog(err error) {
 }
 
 func GetErrorService(context ctx.BackgroundContext) ErrorService {
-	name := "error-service-54dedf6100fb4eecee111fe005cff343"
+	const name = "error-service-54dedf6100fb4eecee111fe005cff343"
 	if _ErrorService, ok := context.Ctx(name).(ErrorService); ok {
 		return _ErrorService
 	}

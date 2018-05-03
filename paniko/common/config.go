@@ -23,6 +23,7 @@ func GetConfig(context ctx.BackgroundContext) config.Base {
 			Subject: "",
 		},
 		Password: config.Password{
+			Salt:     "",
 			Location: os.Getenv("HOME") + "/.config/paniko/password.json",
 		},
 		Cookie: config.Cookie{

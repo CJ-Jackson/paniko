@@ -11,18 +11,6 @@ import (
 	"github.com/CJ-Jackson/ctx"
 )
 
-func CheckErrorAndPanic(err error) {
-	if nil != err {
-		log.Panic(err)
-	}
-}
-
-func CheckErrorAndExit(err error) {
-	if nil != err {
-		log.Fatal(err)
-	}
-}
-
 type ErrorService interface {
 	CheckErrorAndPanic(err error)
 	CheckErrorAndLog(err error)

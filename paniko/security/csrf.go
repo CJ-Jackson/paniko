@@ -6,7 +6,6 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
-	"github.com/CJ-Jackson/paniko/paniko/config"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/gorilla/csrf"
 )
@@ -18,7 +17,7 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 	}
 
 	csrfProtect := csrf.Protect(
-		[]byte(config.GetConfig(context).CsrfKey),
+		[]byte(common.GetConfig(context).CsrfKey),
 		csrf.Secure(false),
 		csrf.ErrorHandler(http.HandlerFunc(func(_ http.ResponseWriter, _ *http.Request) {
 			common.HaltForbidden("Invalid Csrf Token")

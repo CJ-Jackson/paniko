@@ -1,11 +1,10 @@
-package config
+package common
 
 import (
 	"io/ioutil"
 	"os"
 
 	"github.com/CJ-Jackson/ctx"
-	"github.com/CJ-Jackson/paniko/paniko/common"
 )
 
 func GetMessage(context ctx.BackgroundContext) string {
@@ -16,7 +15,7 @@ func GetMessage(context ctx.BackgroundContext) string {
 
 	location := os.Getenv("HOME") + "/.config/paniko/message.txt"
 
-	errorService := common.GetErrorService(context)
+	errorService := GetErrorService(context)
 
 	file, err := os.Open(location)
 	errorService.CheckErrorAndPanic(err)

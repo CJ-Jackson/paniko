@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/CJ-Jackson/ctx"
-	"github.com/CJ-Jackson/paniko/paniko/config"
+	"github.com/CJ-Jackson/paniko/paniko/common"
 )
 
 type Expiration interface {
@@ -24,7 +24,7 @@ func GetExpiration(context ctx.BackgroundContext) Expiration {
 		return e
 	}
 
-	daysToExpiry := config.GetConfig(context).DaysToExpiry
+	daysToExpiry := common.GetConfig(context).DaysToExpiry
 
 	e := &expiration{
 		daysToExpiry: daysToExpiry,

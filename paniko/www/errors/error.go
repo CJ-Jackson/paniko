@@ -4,7 +4,7 @@ import (
 	"runtime/debug"
 
 	"github.com/CJ-Jackson/ctx"
-	"github.com/CJ-Jackson/paniko/paniko/config"
+	"github.com/CJ-Jackson/paniko/paniko/common"
 )
 
 type ErrorController struct {
@@ -14,7 +14,7 @@ type ErrorController struct {
 
 func NewErrorController(context ctx.BackgroundContext) ErrorController {
 	return ErrorController{
-		production: config.GetParam(context).Production,
+		production: common.GetParam(context).Production,
 		view:       NewErrorView(context),
 	}
 }

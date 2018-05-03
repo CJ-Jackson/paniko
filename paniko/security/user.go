@@ -12,7 +12,6 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
-	"github.com/CJ-Jackson/paniko/paniko/config"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
 )
 
@@ -38,7 +37,7 @@ type userController struct {
 func GetUserController(context ctx.BackgroundContext) userController {
 	const name = "user-cbb169f923ea34417740c8d0cda6bc16"
 
-	passwordCfg := config.GetConfig(context).Password
+	passwordCfg := common.GetConfig(context).Password
 	errorService := common.GetErrorService(context)
 	password := common.NewPassword(passwordCfg.Salt)
 

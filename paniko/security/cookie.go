@@ -8,7 +8,6 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
-	"github.com/CJ-Jackson/paniko/paniko/config"
 	"github.com/gorilla/securecookie"
 )
 
@@ -24,7 +23,7 @@ func GetCookieHelper(context ctx.BackgroundContext) CookieHelper {
 		return cHelper
 	}
 
-	cookieCfg := config.GetConfig(context).Cookie
+	cookieCfg := common.GetConfig(context).Cookie
 	cHelper := cookieHelper{
 		secureCookie: securecookie.New([]byte(cookieCfg.HashKey), []byte(cookieCfg.BlockKey)),
 		errorService: common.GetErrorService(context),

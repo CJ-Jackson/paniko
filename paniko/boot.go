@@ -7,7 +7,6 @@ import (
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
-	"github.com/CJ-Jackson/paniko/paniko/config"
 	"github.com/CJ-Jackson/paniko/paniko/security"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
 	"github.com/CJ-Jackson/paniko/paniko/www"
@@ -22,7 +21,7 @@ func Boot() {
 	errors.Boot(context)
 	login.Boot(context)
 
-	startServer(config.GetParam(context).Address, common.GetMuxer(context), getContextBoot(context))
+	startServer(common.GetParam(context).Address, common.GetMuxer(context), getContextBoot(context))
 }
 
 func getContextBoot(context ctx.BackgroundContext) common.ContextHandler {

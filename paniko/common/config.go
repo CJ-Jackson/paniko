@@ -2,9 +2,8 @@ package common
 
 import (
 	"encoding/json"
-	"os"
-
 	"net/mail"
+	"os"
 
 	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common/config"

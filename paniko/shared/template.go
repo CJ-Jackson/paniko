@@ -11,7 +11,7 @@ func CloneMasterTemplate(context ctx.BackgroundContext) *template.Template {
 }
 
 func getMasterTemplate(context ctx.BackgroundContext) *template.Template {
-	name := "master-template-73e8c809b3a0930c4d0085f5d183a6ab"
+	const name = "master-template-73e8c809b3a0930c4d0085f5d183a6ab"
 	if Template, ok := context.Ctx(name).(*template.Template); ok {
 		return Template
 	}

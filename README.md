@@ -30,3 +30,7 @@ latter is great for controller that way I only have to call the
 [constructor](https://github.com/CJ-Jackson/paniko/blob/master/paniko/www/home.go#L15)
 once, as it's pass by value, every time I call a method it's create a new copy of the struct, it's basically immutable;
 therefore avoiding anti-patterns like singletons.
+
+## What does paniko do?
+
+It's automatically docdrops, if I don't report to the system.

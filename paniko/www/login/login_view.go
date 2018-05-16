@@ -6,8 +6,8 @@ package login
 import (
 	"html/template"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 type LoginView interface {
@@ -30,6 +30,6 @@ func (v loginView) LoginTemplate(context ctx.Context, form LoginForm) {
 	context.SetTitle("Login")
 	context.SetData(loginDataName, form)
 
-	err := v.loginTemplate.Execute(context.Response(), context)
+	err := v.loginTemplate.Execute(context.ResponseWriter(), context)
 	v.errorService.CheckErrorAndLog(err)
 }

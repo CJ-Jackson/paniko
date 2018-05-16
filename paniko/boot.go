@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/mail"
 	"github.com/CJ-Jackson/paniko/paniko/security"
@@ -13,6 +12,7 @@ import (
 	"github.com/CJ-Jackson/paniko/paniko/www"
 	"github.com/CJ-Jackson/paniko/paniko/www/errors"
 	"github.com/CJ-Jackson/paniko/paniko/www/login"
+	"github.com/cjtoolkit/ctx"
 )
 
 func Boot() {
@@ -40,7 +40,7 @@ func getContextBoot(context ctx.BackgroundContext) common.ContextHandler {
 func startServer(address string, handler http.Handler, boot common.ContextHandler) {
 	fmt.Println("Running Server at", address)
 	log.Print(http.ListenAndServe(address, http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		req, context := ctx.NewContext(req, res)
+		req, context := ctx.NewContext(res, req)
 		boot(context)
 		handler.ServeHTTP(res, req)
 	})))

@@ -5,13 +5,13 @@ import (
 	"net/mail"
 	"os"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common/config"
+	"github.com/cjtoolkit/ctx"
 )
 
 func GetConfig(context ctx.BackgroundContext) config.Base {
 	const name = "config-5a43ef4f8f6dbc0ee0ec3471d26dfdcd"
-	if configVar, ok := context.Ctx(name).(config.Base); ok {
+	if configVar, ok := context.Get(name).(config.Base); ok {
 		return configVar
 	}
 
@@ -48,6 +48,6 @@ func GetConfig(context ctx.BackgroundContext) config.Base {
 	err = json.NewDecoder(file).Decode(&configVar)
 	errorService.CheckErrorAndPanic(err)
 
-	context.SetCtx(name, configVar)
+	context.Set(name, configVar)
 	return configVar
 }

@@ -6,9 +6,10 @@
 package errors
 
 import (
-	ctx "github.com/CJ-Jackson/ctx"
-	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+
+	ctx "github.com/cjtoolkit/ctx"
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockErrorView is a mock of ErrorView interface

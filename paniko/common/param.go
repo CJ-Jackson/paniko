@@ -3,8 +3,8 @@ package common
 import (
 	"os"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/command"
+	"github.com/cjtoolkit/ctx"
 )
 
 type Param struct {
@@ -14,7 +14,7 @@ type Param struct {
 
 func GetParam(context ctx.BackgroundContext) Param {
 	const name = "param-7bddb00d1a070092274f0139a7cadcc9"
-	if param, ok := context.Ctx(name).(Param); ok {
+	if param, ok := context.Get(name).(Param); ok {
 		return param
 	}
 
@@ -32,6 +32,6 @@ func GetParam(context ctx.BackgroundContext) Param {
 		param.Production = true
 	})
 
-	context.SetCtx(name, *param)
+	context.Set(name, *param)
 	return *param
 }

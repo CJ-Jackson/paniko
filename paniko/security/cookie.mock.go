@@ -6,10 +6,11 @@
 package security
 
 import (
-	ctx "github.com/CJ-Jackson/ctx"
-	gomock "github.com/golang/mock/gomock"
 	http "net/http"
 	reflect "reflect"
+
+	ctx "github.com/cjtoolkit/ctx"
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockCookieHelper is a mock of CookieHelper interface

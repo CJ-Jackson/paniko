@@ -6,8 +6,8 @@ package errors
 import (
 	"html/template"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 type ErrorView interface {
@@ -30,7 +30,7 @@ func (v errorView) ErrorTemplate(context ctx.Context, code int, title string, da
 	context.SetTitle(title)
 	context.SetData(errorTemplateDataName, data)
 
-	res := context.Response()
+	res := context.ResponseWriter()
 	res.WriteHeader(code)
 
 	err := v.errorTemplate.Execute(res, context)

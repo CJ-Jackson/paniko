@@ -4,12 +4,12 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/CJ-Jackson/ctx"
+	"github.com/cjtoolkit/ctx"
 )
 
 func GetMessage(context ctx.BackgroundContext) string {
 	const name = "message-071262aa97887e3b10cf6c00d7462f24"
-	if message, ok := context.Ctx(name).(string); ok {
+	if message, ok := context.Get(name).(string); ok {
 		return message
 	}
 
@@ -25,6 +25,6 @@ func GetMessage(context ctx.BackgroundContext) string {
 
 	message := string(b)
 
-	context.SetCtx(name, message)
+	context.Set(name, message)
 	return message
 }

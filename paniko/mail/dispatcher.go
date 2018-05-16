@@ -1,8 +1,8 @@
 package mail
 
 import (
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/expiration"
+	"github.com/cjtoolkit/ctx"
 )
 
 type Dispatcher struct {

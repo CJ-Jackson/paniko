@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
+	"github.com/cjtoolkit/ctx"
 )
 
 const userCookieName = "user"
@@ -68,7 +68,7 @@ func GetUserController(context ctx.BackgroundContext) userController {
 		cookieHelper:     GetCookieHelper(context),
 	}
 
-	context.SetCtx(name, userC)
+	context.Set(name, userC)
 	return userC
 }
 

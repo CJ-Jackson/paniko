@@ -3,8 +3,8 @@ package errors
 import (
 	"runtime/debug"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 type ErrorController struct {

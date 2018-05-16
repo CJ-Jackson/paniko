@@ -4,15 +4,15 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
 	"github.com/CJ-Jackson/paniko/paniko/shared"
+	"github.com/cjtoolkit/ctx"
 	"github.com/gorilla/csrf"
 )
 
 func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 	const name = "csrf-7cf4ddd5429f9237ebd331a9c65498ed"
-	if contextHandler, ok := context.Ctx(name).(common.ContextHandler); ok {
+	if contextHandler, ok := context.Get(name).(common.ContextHandler); ok {
 		return contextHandler
 	}
 
@@ -34,10 +34,10 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 				tokenField: csrf.TemplateField(req),
 				token:      csrf.Token(req),
 			}))
-		})).ServeHTTP(context.Response(), context.Request())
+		})).ServeHTTP(context.ResponseWriter(), context.Request())
 	}
 
-	context.SetCtx(name, contextHandler)
+	context.Set(name, contextHandler)
 	return contextHandler
 }
 

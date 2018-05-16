@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/CJ-Jackson/ctx"
+	"github.com/cjtoolkit/ctx"
 )
 
 type ErrorService interface {
@@ -34,7 +34,7 @@ func (e errorService) CheckErrorAndLog(err error) {
 
 func GetErrorService(context ctx.BackgroundContext) ErrorService {
 	const name = "error-service-54dedf6100fb4eecee111fe005cff343"
-	if _ErrorService, ok := context.Ctx(name).(ErrorService); ok {
+	if _ErrorService, ok := context.Get(name).(ErrorService); ok {
 		return _ErrorService
 	}
 
@@ -42,7 +42,7 @@ func GetErrorService(context ctx.BackgroundContext) ErrorService {
 		log: log.New(os.Stderr, "INFO: ", log.Lshortfile),
 	}
 
-	context.SetCtx(name, _ErrorService)
+	context.Set(name, _ErrorService)
 	return _ErrorService
 }
 

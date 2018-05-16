@@ -3,7 +3,7 @@ package errors
 import (
 	"html/template"
 
-	"github.com/CJ-Jackson/ctx"
+	"github.com/cjtoolkit/ctx"
 )
 
 const errorTemplateDataName = "error-e4e93993b5d574d784ac512857d266c4"

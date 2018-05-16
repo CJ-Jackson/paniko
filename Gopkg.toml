@@ -48,3 +48,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/jpoehls/gophermail"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/cjtoolkit/ctx"

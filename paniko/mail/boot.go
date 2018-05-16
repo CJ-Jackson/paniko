@@ -1,6 +1,6 @@
 package mail
 
-import "github.com/CJ-Jackson/ctx"
+import "github.com/cjtoolkit/ctx"
 
 func Boot(context ctx.BackgroundContext) {
 	bootDispatcher(NewDispatcher(context))

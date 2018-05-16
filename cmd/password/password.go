@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/security"
+	"github.com/cjtoolkit/ctx"
 )
 
 func main() {

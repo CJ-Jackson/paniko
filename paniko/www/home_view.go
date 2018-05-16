@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 	"html/template"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 type HomeView interface {
@@ -32,11 +32,11 @@ func (v homeView) Index(context ctx.Context, data HomeViewIndexData) {
 	context.SetTitle("Paniko")
 	context.SetData(indexName, data)
 
-	err := v.indexTemplate.Execute(context.Response(), context)
+	err := v.indexTemplate.Execute(context.ResponseWriter(), context)
 	v.errorService.CheckErrorAndLog(err)
 }
 
 func (v homeView) Json(context ctx.Context, data JsonData) {
-	err := json.NewEncoder(context.Response()).Encode(data)
+	err := json.NewEncoder(context.ResponseWriter()).Encode(data)
 	v.errorService.CheckErrorAndLog(err)
 }

@@ -1,8 +1,8 @@
 package shared
 
 import (
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 const (

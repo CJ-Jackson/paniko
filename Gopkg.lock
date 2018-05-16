@@ -3,9 +3,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/CJ-Jackson/ctx"
+  name = "github.com/cjtoolkit/ctx"
   packages = ["."]
-  revision = "f382c5b37a9e8c4f1addc7287e9b5572ae232a4c"
+  revision = "d31f932cb39a3542936a1c9f5f98e080114eb369"
 
 [[projects]]
   name = "github.com/golang/mock"
@@ -64,6 +64,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8ef1ca23ae4a005ef30cccc1da83edca6ef993593c8b622213622de292696430"
+  inputs-digest = "0546fa8d3a02590d50f69c209b138a0b00c719a7680d1e265fa69856fda8e406"
   solver-name = "gps-cdcl"
   solver-version = 1

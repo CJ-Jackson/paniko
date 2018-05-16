@@ -3,7 +3,7 @@ package errors
 import (
 	"testing"
 
-	"github.com/CJ-Jackson/ctx"
+	"github.com/cjtoolkit/ctx"
 	"github.com/golang/mock/gomock"
 )
 

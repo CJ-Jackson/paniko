@@ -6,8 +6,8 @@ package security
 import (
 	"net/http"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 	"github.com/gorilla/securecookie"
 )
 
@@ -19,7 +19,7 @@ type CookieHelper interface {
 
 func GetCookieHelper(context ctx.BackgroundContext) CookieHelper {
 	const name = "cookie-helper-e0ff25bef45a0649477d9b55231e4cc1"
-	if cHelper, ok := context.Ctx(name).(CookieHelper); ok {
+	if cHelper, ok := context.Get(name).(CookieHelper); ok {
 		return cHelper
 	}
 
@@ -29,7 +29,7 @@ func GetCookieHelper(context ctx.BackgroundContext) CookieHelper {
 		errorService: common.GetErrorService(context),
 	}
 
-	context.SetCtx(name, cHelper)
+	context.Set(name, cHelper)
 	return cHelper
 }
 
@@ -43,7 +43,7 @@ func (h cookieHelper) Set(context ctx.Context, cookie *http.Cookie) {
 	cookie.Value, err = h.secureCookie.Encode(cookie.Name, cookie.Value)
 	h.errorService.CheckErrorAndPanic(err)
 
-	http.SetCookie(context.Response(), cookie)
+	http.SetCookie(context.ResponseWriter(), cookie)
 }
 
 func (h cookieHelper) Get(context ctx.Context, name string) *http.Cookie {
@@ -62,7 +62,7 @@ func (h cookieHelper) Get(context ctx.Context, name string) *http.Cookie {
 }
 
 func (h cookieHelper) Delete(context ctx.Context, name string) {
-	http.SetCookie(context.Response(), &http.Cookie{
+	http.SetCookie(context.ResponseWriter(), &http.Cookie{
 		Name:   name,
 		MaxAge: -1,
 	})

@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CJ-Jackson/ctx"
 	"github.com/CJ-Jackson/paniko/paniko/common"
+	"github.com/cjtoolkit/ctx"
 )
 
 type Expiration interface {
@@ -20,7 +20,7 @@ type Expiration interface {
 
 func GetExpiration(context ctx.BackgroundContext) Expiration {
 	const name = "expiration-fa22848f098081e710887c8a2b930f07"
-	if e, ok := context.Ctx(name).(Expiration); ok {
+	if e, ok := context.Get(name).(Expiration); ok {
 		return e
 	}
 
@@ -31,7 +31,7 @@ func GetExpiration(context ctx.BackgroundContext) Expiration {
 		t:            time.Now().AddDate(0, 0, daysToExpiry),
 	}
 
-	context.SetCtx(name, e)
+	context.Set(name, e)
 	return e
 }
 

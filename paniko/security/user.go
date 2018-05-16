@@ -34,42 +34,41 @@ type userController struct {
 	cookieHelper     CookieHelper
 }
 
-func GetUserController(context ctx.BackgroundContext) userController {
-	const name = "user-cbb169f923ea34417740c8d0cda6bc16"
+func GetUserController(context ctx.BackgroundContext) UserController {
+	return context.Persist("user-cbb169f923ea34417740c8d0cda6bc16", func() (interface{}, error) {
+		passwordCfg := common.GetConfig(context).Password
+		errorService := common.GetErrorService(context)
+		password := common.NewPassword(passwordCfg.Salt)
 
-	passwordCfg := common.GetConfig(context).Password
-	errorService := common.GetErrorService(context)
-	password := common.NewPassword(passwordCfg.Salt)
+		users := map[string]string{
+			"admin": password.SaltPassword("password"),
+		}
 
-	users := map[string]string{
-		"admin": password.SaltPassword("password"),
-	}
+		file, err := os.Open(passwordCfg.Location)
+		if nil != err {
+			file, err := os.Create(passwordCfg.Location)
+			defer file.Close()
+			errorService.CheckErrorAndPanic(err)
 
-	file, err := os.Open(passwordCfg.Location)
-	if nil != err {
-		file, err := os.Create(passwordCfg.Location)
-		defer file.Close()
-		errorService.CheckErrorAndPanic(err)
+			err = json.NewEncoder(file).Encode(users)
+			errorService.CheckErrorAndPanic(err)
+		} else {
+			defer file.Close()
 
-		err = json.NewEncoder(file).Encode(users)
-		errorService.CheckErrorAndPanic(err)
-	} else {
-		defer file.Close()
+			err = json.NewDecoder(file).Decode(&users)
+			errorService.CheckErrorAndPanic(err)
+		}
 
-		err = json.NewDecoder(file).Decode(&users)
-		errorService.CheckErrorAndPanic(err)
-	}
+		userC := userController{
+			passwordLocation: passwordCfg.Location,
+			password:         password,
+			users:            users,
+			errorService:     errorService,
+			cookieHelper:     GetCookieHelper(context),
+		}
 
-	userC := userController{
-		passwordLocation: passwordCfg.Location,
-		password:         password,
-		users:            users,
-		errorService:     errorService,
-		cookieHelper:     GetCookieHelper(context),
-	}
-
-	context.Set(name, userC)
-	return userC
+		return userC, nil
+	}).(UserController)
 }
 
 func (c userController) CheckCookie(context ctx.Context) shared.User {

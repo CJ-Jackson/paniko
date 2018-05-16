@@ -18,19 +18,15 @@ type CookieHelper interface {
 }
 
 func GetCookieHelper(context ctx.BackgroundContext) CookieHelper {
-	const name = "cookie-helper-e0ff25bef45a0649477d9b55231e4cc1"
-	if cHelper, ok := context.Get(name).(CookieHelper); ok {
-		return cHelper
-	}
+	return context.Persist("cookie-helper-e0ff25bef45a0649477d9b55231e4cc1", func() (interface{}, error) {
+		cookieCfg := common.GetConfig(context).Cookie
+		cHelper := cookieHelper{
+			secureCookie: securecookie.New([]byte(cookieCfg.HashKey), []byte(cookieCfg.BlockKey)),
+			errorService: common.GetErrorService(context),
+		}
 
-	cookieCfg := common.GetConfig(context).Cookie
-	cHelper := cookieHelper{
-		secureCookie: securecookie.New([]byte(cookieCfg.HashKey), []byte(cookieCfg.BlockKey)),
-		errorService: common.GetErrorService(context),
-	}
-
-	context.Set(name, cHelper)
-	return cHelper
+		return cHelper, nil
+	}).(CookieHelper)
 }
 
 type cookieHelper struct {

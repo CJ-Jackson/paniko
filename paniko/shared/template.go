@@ -18,6 +18,7 @@ func getMasterTemplate(context ctx.BackgroundContext) *template.Template {
 
 	funcMaps := template.FuncMap{
 		"csrf": GetCsrf,
+		"user": GetUser,
 	}
 
 	Template := template.Must(template.New("master-Template").Funcs(funcMaps).Parse(masterTemplate))

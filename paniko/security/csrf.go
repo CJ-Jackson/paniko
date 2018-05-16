@@ -20,7 +20,7 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 			})),
 		)
 
-		contextHandler := func(context ctx.Context) {
+		contextHandler := common.ContextHandler(func(context ctx.Context) {
 			context.PersistData(shared.CsrfDataName, func() interface{} {
 				var data csrfData
 				csrfProtect(http.HandlerFunc(func(_ http.ResponseWriter, req *http.Request) {
@@ -32,7 +32,7 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 
 				return data
 			})
-		}
+		})
 
 		return contextHandler, nil
 	}).(common.ContextHandler)

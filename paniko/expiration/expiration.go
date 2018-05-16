@@ -19,20 +19,16 @@ type Expiration interface {
 }
 
 func GetExpiration(context ctx.BackgroundContext) Expiration {
-	const name = "expiration-fa22848f098081e710887c8a2b930f07"
-	if e, ok := context.Get(name).(Expiration); ok {
-		return e
-	}
+	return context.Persist("expiration-fa22848f098081e710887c8a2b930f07", func() (interface{}, error) {
+		daysToExpiry := common.GetConfig(context).DaysToExpiry
 
-	daysToExpiry := common.GetConfig(context).DaysToExpiry
+		e := &expiration{
+			daysToExpiry: daysToExpiry,
+			t:            time.Now().AddDate(0, 0, daysToExpiry),
+		}
 
-	e := &expiration{
-		daysToExpiry: daysToExpiry,
-		t:            time.Now().AddDate(0, 0, daysToExpiry),
-	}
-
-	context.Set(name, e)
-	return e
+		return e, nil
+	}).(Expiration)
 }
 
 type expiration struct {

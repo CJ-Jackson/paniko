@@ -95,11 +95,9 @@ func (c userController) CheckCookie(context ctx.Context) shared.User {
 
 func (c userController) GetDep() common.ContextHandler {
 	return func(context ctx.Context) {
-		if _, ok := context.Data(shared.UserDataName).(shared.User); ok {
-			return
-		}
-
-		context.SetData(shared.UserDataName, c.CheckCookie(context))
+		context.PersistData(shared.UserDataName, func() interface{} {
+			return c.CheckCookie(context)
+		})
 	}
 }
 

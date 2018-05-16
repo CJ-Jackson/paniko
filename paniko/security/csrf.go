@@ -33,6 +33,7 @@ func GetCsrf(context ctx.BackgroundContext) common.ContextHandler {
 				return data
 			})
 		}
+
 		return contextHandler, nil
 	}).(common.ContextHandler)
 }

@@ -27,7 +27,6 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 		muxer.POST(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
 			shared.CheckIfGuest(context)
-			request = context.Request()
 			request.ParseForm()
 			shared.CheckCsrf(context)
 

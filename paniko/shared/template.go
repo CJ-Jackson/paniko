@@ -11,18 +11,14 @@ func CloneMasterTemplate(context ctx.BackgroundContext) *template.Template {
 }
 
 func getMasterTemplate(context ctx.BackgroundContext) *template.Template {
-	const name = "master-template-73e8c809b3a0930c4d0085f5d183a6ab"
-	if Template, ok := context.Get(name).(*template.Template); ok {
-		return Template
-	}
+	return context.Persist("master-template-73e8c809b3a0930c4d0085f5d183a6ab", func() (interface{}, error) {
+		funcMaps := template.FuncMap{
+			"csrf": GetCsrf,
+			"user": GetUser,
+		}
 
-	funcMaps := template.FuncMap{
-		"csrf": GetCsrf,
-		"user": GetUser,
-	}
+		Template := template.Must(template.New("master-Template").Funcs(funcMaps).Parse(masterTemplate))
 
-	Template := template.Must(template.New("master-Template").Funcs(funcMaps).Parse(masterTemplate))
-
-	context.Set(name, Template)
-	return Template
+		return Template, nil
+	}).(*template.Template)
 }

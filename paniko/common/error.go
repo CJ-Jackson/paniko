@@ -33,17 +33,13 @@ func (e errorService) CheckErrorAndLog(err error) {
 }
 
 func GetErrorService(context ctx.BackgroundContext) ErrorService {
-	const name = "error-service-54dedf6100fb4eecee111fe005cff343"
-	if _ErrorService, ok := context.Get(name).(ErrorService); ok {
-		return _ErrorService
-	}
+	return context.Persist("error-service-54dedf6100fb4eecee111fe005cff343", func() (interface{}, error) {
+		_ErrorService := errorService{
+			log: log.New(os.Stderr, "INFO: ", log.Lshortfile),
+		}
 
-	_ErrorService := errorService{
-		log: log.New(os.Stderr, "INFO: ", log.Lshortfile),
-	}
-
-	context.Set(name, _ErrorService)
-	return _ErrorService
+		return _ErrorService, nil
+	}).(ErrorService)
 }
 
 type NoError struct{}

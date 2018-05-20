@@ -21,7 +21,7 @@ func NewLoginValidator() LoginValidator {
 
 func (v LoginValidator) NewLoginForm() LoginForm {
 	return LoginForm{
-		Uri:         "",
+		Uri:         "/",
 		Username:    "",
 		UsernameErr: nil,
 		Password:    "",

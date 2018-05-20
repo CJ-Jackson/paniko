@@ -19,22 +19,24 @@ func buildLoginTemplate(context ctx.BackgroundContext) *template.Template {
 	return template.Must(shared.CloneMasterTemplate(context).Funcs(funcMaps).Parse(loginTemplate))
 }
 
-const loginTemplate = `{{ define "content" }}{{ $form := form . }}{{ $csrf := csrf . }}
+const loginTemplate = `{{ define "content" }}{{ $form := form . }}{{ $csrf := csrf . }}{{ $formHelper := formHelper }}
 
 {{ if $form.Attempt }}
 <div class="alert alert-danger">Failed to login, try again.</div>
 {{ end }}
 
-<form method="post">
-	{{ $csrf.TokenField }}
+<form method="post" novalidate>
+	{{ $csrf.TokenField }}{{ $formHelper.Valid $form.Valid }}
 	<input type="hidden" name="uri" value="{{ $form.Uri }}">
 	<div class="form-group">
 		<label for="username">Username</label>
-		<input class="form-control" type="text" value="" name="username" id="username">
+		<input class="form-control" type="text" value="{{$form.Username}}" name="username" id="username">
+		{{ $formHelper.Check $form.UsernameErr }}
 	</div>
 	<div class="form-group">
 		<label for="password">Password</label>
 		<input class="form-control" type="password" value="" name="password" id="password">
+		{{ $formHelper.Check $form.PasswordErr }}
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>

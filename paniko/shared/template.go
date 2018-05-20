@@ -17,6 +17,11 @@ func getMasterTemplate(context ctx.BackgroundContext) *template.Template {
 			"user": GetUser,
 		}
 
+		{
+			formHelperTemplate := NewFormHelperTemplate()
+			funcMaps["formHelper"] = func() *FormHelper { return NewFormHelper(formHelperTemplate) }
+		}
+
 		Template := template.Must(template.New("master-Template").Funcs(funcMaps).Parse(masterTemplate))
 
 		return Template, nil

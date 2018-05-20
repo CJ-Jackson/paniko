@@ -8,14 +8,14 @@ import (
 )
 
 type LoginValidator struct {
-	usernameRule []vString.ValidationRule
-	passwordRule []vString.ValidationRule
+	usernameRules []vString.ValidationRule
+	passwordRules []vString.ValidationRule
 }
 
 func NewLoginValidator() LoginValidator {
 	return LoginValidator{
-		usernameRule: []vString.ValidationRule{vString.Mandatory(), vString.BetweenRune(3, 50)},
-		passwordRule: []vString.ValidationRule{vString.Mandatory()},
+		usernameRules: []vString.ValidationRule{vString.Mandatory(), vString.BetweenRune(3, 50)},
+		passwordRules: []vString.ValidationRule{vString.Mandatory()},
 	}
 }
 
@@ -27,7 +27,7 @@ func (v LoginValidator) NewLoginForm() LoginForm {
 		Password:    "",
 		PasswordErr: nil,
 		Attempt:     false,
-		Valid:       false,
+		Valid:       true,
 	}
 }
 
@@ -40,8 +40,8 @@ func (v LoginValidator) NewValidatedLoginForm(values url.Values) LoginForm {
 
 	form.Attempt = true
 
-	form.Username, form.UsernameErr = vString.Validate(values.Get("username"), v.usernameRule...)
-	form.Password, form.PasswordErr = vString.Validate(values.Get("password"), v.passwordRule...)
+	form.Username, form.UsernameErr = vString.Validate(values.Get("username"), v.usernameRules...)
+	form.Password, form.PasswordErr = vString.Validate(values.Get("password"), v.passwordRules...)
 
 	form.Valid = vError.CheckErr(form.UsernameErr, form.PasswordErr)
 

@@ -8,6 +8,15 @@
   revision = "d31f932cb39a3542936a1c9f5f98e080114eb369"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/cjtoolkit/validate"
+  packages = [
+    "vError",
+    "vString"
+  ]
+  revision = "72aa6196bfb8bc241ec799e28ba9fd21d0b70c21"
+
+[[projects]]
   name = "github.com/golang/mock"
   packages = ["gomock"]
   revision = "c34cdb4725f4c3844d095133c6e40e448b86589b"
@@ -64,6 +73,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0546fa8d3a02590d50f69c209b138a0b00c719a7680d1e265fa69856fda8e406"
+  inputs-digest = "be7169e85bb0cf5549ab2c2f5fc449a23b370e163309d5ab01d133ef21463bb0"
   solver-name = "gps-cdcl"
   solver-version = 1

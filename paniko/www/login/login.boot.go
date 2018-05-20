@@ -9,7 +9,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func bootLogin(controller LoginController, muxer *httprouter.Router) {
+func bootLogin(controller LoginController, validator LoginValidator, muxer *httprouter.Router) {
 	// Log In
 	{
 		muxer.GET(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
@@ -17,12 +17,7 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 			shared.CheckIfGuest(context)
 			shared.InitCsrf(context)
 
-			controller.ShowLogin(context, LoginForm{
-				Uri:      "/",
-				Username: "",
-				Password: "",
-				Attempt:  false,
-			})
+			controller.ShowLogin(context, validator.NewLoginForm())
 		})
 		muxer.POST(uri.Login, func(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 			context := ctx.GetContext(request)
@@ -30,12 +25,7 @@ func bootLogin(controller LoginController, muxer *httprouter.Router) {
 			request.ParseForm()
 			shared.CheckCsrf(context)
 
-			controller.DoLogin(context, LoginForm{
-				Uri:      "/",
-				Username: request.PostForm.Get("username"),
-				Password: request.PostForm.Get("password"),
-				Attempt:  true,
-			})
+			controller.DoLogin(context, validator.NewValidatedLoginForm(request.PostForm))
 		})
 	}
 

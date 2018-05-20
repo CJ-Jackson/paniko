@@ -7,5 +7,5 @@ import (
 
 func Boot(context ctx.BackgroundContext) {
 	muxer := common.GetMuxer(context)
-	bootLogin(NewLoginController(context), muxer)
+	bootLogin(NewLoginController(context), NewLoginValidator(), muxer)
 }

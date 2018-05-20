@@ -52,3 +52,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/cjtoolkit/ctx"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/cjtoolkit/validate"

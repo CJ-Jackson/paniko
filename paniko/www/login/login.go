@@ -24,7 +24,7 @@ func (c LoginController) ShowLogin(context ctx.Context, form LoginForm) {
 }
 
 func (c LoginController) DoLogin(context ctx.Context, form LoginForm) {
-	if c.userController.Login(context, form.Username, form.Password) {
+	if form.Valid && c.userController.Login(context, form.Username, form.Password) {
 		common.HaltSeeOther(form.Uri)
 	}
 

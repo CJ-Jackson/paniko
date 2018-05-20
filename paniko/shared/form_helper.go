@@ -19,18 +19,31 @@ func NewFormHelperTemplate() FormHelperTemplate {
 type FormHelper struct {
 	template FormHelperTemplate
 	valid    bool
+	checked  bool
 }
 
 func NewFormHelper(template FormHelperTemplate) *FormHelper {
 	return &FormHelper{
 		template: template,
 		valid:    true,
+		checked:  false,
 	}
 }
 
 func (h *FormHelper) Valid(value bool) string {
 	h.valid = value
 	return ""
+}
+
+func (h *FormHelper) ValidClass() string {
+	if !h.checked {
+		return ""
+	}
+	if h.valid {
+		return "is-valid"
+	}
+
+	return "is-invalid"
 }
 
 func (h *FormHelper) Check(err error) template.HTML {

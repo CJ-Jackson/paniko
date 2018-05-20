@@ -14,7 +14,7 @@
     "vError",
     "vString"
   ]
-  revision = "72aa6196bfb8bc241ec799e28ba9fd21d0b70c21"
+  revision = "ab097f20df49754cfe42cacc5a633d14c0f573ff"
 
 [[projects]]
   name = "github.com/golang/mock"
@@ -73,6 +73,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "be7169e85bb0cf5549ab2c2f5fc449a23b370e163309d5ab01d133ef21463bb0"
+  inputs-digest = "5fc56eaeedf1ea9d137c92de09b35df2dfe1dbd40638f2870acd83cc4fbbbefd"
   solver-name = "gps-cdcl"
   solver-version = 1

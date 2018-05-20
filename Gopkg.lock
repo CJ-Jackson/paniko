@@ -14,7 +14,7 @@
     "vError",
     "vString"
   ]
-  revision = "ab097f20df49754cfe42cacc5a633d14c0f573ff"
+  revision = "0cc2ff31a7abaa3c5a74919606ad098df59f8ecd"
 
 [[projects]]
   name = "github.com/golang/mock"

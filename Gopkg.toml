@@ -30,10 +30,6 @@
   unused-packages = true
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/CJ-Jackson/ctx"
-
-[[constraint]]
   name = "github.com/julienschmidt/httprouter"
   version = "1.1.0"
 

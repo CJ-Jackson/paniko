@@ -30,23 +30,24 @@ func NewFormHelper(template FormHelperTemplate) *FormHelper {
 	}
 }
 
-func (h *FormHelper) Valid(value bool) string {
-	h.valid = value
+func (h *FormHelper) Set(checked, valid bool) string {
+	h.checked = checked
+	h.valid = valid
 	return ""
 }
 
-func (h *FormHelper) ValidClass() string {
-	if !h.checked {
+func (h *FormHelper) ValidClass(err error) string {
+	if !h.checked && h.valid {
 		return ""
 	}
-	if h.valid {
+	if err == nil {
 		return "is-valid"
 	}
 
 	return "is-invalid"
 }
 
-func (h *FormHelper) Check(err error) template.HTML {
+func (h *FormHelper) CheckErr(err error) template.HTML {
 	if !h.valid && err != nil {
 		buf := &bytes.Buffer{}
 		strs := strings.Split(err.Error(), "\n")

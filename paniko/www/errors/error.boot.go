@@ -15,14 +15,14 @@ func bootError(controller ErrorController, muxer *httprouter.Router) {
 		controller.ShowError(ctx.GetContext(req), code, http.StatusText(code), message)
 	}
 
-	muxer.NotFound = func(_ http.ResponseWriter, req *http.Request) {
+	muxer.NotFound = http.HandlerFunc(func(_ http.ResponseWriter, req *http.Request) {
 		shared.CheckIfUser(ctx.GetContext(req))
 		showError(req, http.StatusNotFound, "Router could not find path")
-	}
-	muxer.MethodNotAllowed = func(_ http.ResponseWriter, req *http.Request) {
+	})
+	muxer.MethodNotAllowed = http.HandlerFunc(func(_ http.ResponseWriter, req *http.Request) {
 		shared.CheckIfUser(ctx.GetContext(req))
 		showError(req, http.StatusMethodNotAllowed, "Router found path, but however method is not allowed")
-	}
+	})
 
 	muxer.PanicHandler = func(res http.ResponseWriter, req *http.Request, i interface{}) {
 		switch i := i.(type) {

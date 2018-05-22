@@ -35,10 +35,13 @@ func TestLoginController(t *testing.T) {
 		mocks, subject := let(t)
 
 		form := LoginForm{
-			Uri:      "Uri",
-			Username: "Username",
-			Password: "Password",
-			Attempt:  true,
+			Uri:         "Uri",
+			Username:    "Username",
+			UsernameErr: nil,
+			Password:    "Password",
+			PasswordErr: nil,
+			Attempt:     true,
+			Valid:       true,
 		}
 
 		mocks.userController.EXPECT().Login(nil, "Username", "Password").Return(false)
@@ -51,10 +54,13 @@ func TestLoginController(t *testing.T) {
 		mocks, subject := let(t)
 
 		form := LoginForm{
-			Uri:      "Uri",
-			Username: "Username",
-			Password: "Password",
-			Attempt:  true,
+			Uri:         "Uri",
+			Username:    "Username",
+			UsernameErr: nil,
+			Password:    "Password",
+			PasswordErr: nil,
+			Attempt:     true,
+			Valid:       true,
 		}
 
 		mocks.userController.EXPECT().Login(nil, "Username", "Password").Return(true)

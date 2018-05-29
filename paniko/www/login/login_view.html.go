@@ -7,16 +7,8 @@ import (
 	"github.com/cjtoolkit/ctx"
 )
 
-const (
-	loginDataName = "login-96a0b2a136ff5b03b5b7345f740d2667"
-)
-
 func buildLoginTemplate(context ctx.BackgroundContext) *template.Template {
-	funcMaps := template.FuncMap{
-		"form": func(context ctx.Context) LoginForm { return context.Data(loginDataName).(LoginForm) },
-	}
-
-	return template.Must(shared.CloneMasterTemplate(context).Funcs(funcMaps).Parse(loginTemplate))
+	return template.Must(shared.CloneMasterTemplate(context).Parse(loginTemplate))
 }
 
 const loginTemplate = `{{ define "content" }}{{ $csrf := csrf . }}{{ $fH := formHelper }}

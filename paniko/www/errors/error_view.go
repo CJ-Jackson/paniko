@@ -27,12 +27,19 @@ func NewErrorView(context ctx.BackgroundContext) ErrorView {
 }
 
 func (v errorView) ErrorTemplate(context ctx.Context, code int, title string, data ErrorTemplateData) {
+	type Context struct {
+		ctx.Context
+		Data ErrorTemplateData
+	}
+
 	context.SetTitle(title)
-	context.SetData(errorTemplateDataName, data)
 
 	res := context.ResponseWriter()
 	res.WriteHeader(code)
 
-	err := v.errorTemplate.Execute(res, context)
+	err := v.errorTemplate.Execute(res, Context{
+		Context: context,
+		Data:    data,
+	})
 	v.errorService.CheckErrorAndLog(err)
 }

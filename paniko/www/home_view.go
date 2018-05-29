@@ -29,10 +29,17 @@ type homeView struct {
 }
 
 func (v homeView) Index(context ctx.Context, data HomeViewIndexData) {
-	context.SetTitle("Paniko")
-	context.SetData(indexName, data)
+	type Context struct {
+		ctx.Context
+		Data HomeViewIndexData
+	}
 
-	err := v.indexTemplate.Execute(context.ResponseWriter(), context)
+	context.SetTitle("Paniko")
+
+	err := v.indexTemplate.Execute(context.ResponseWriter(), Context{
+		Context: context,
+		Data:    data,
+	})
 	v.errorService.CheckErrorAndLog(err)
 }
 

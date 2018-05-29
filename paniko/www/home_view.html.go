@@ -8,8 +8,6 @@ import (
 	"github.com/cjtoolkit/ctx"
 )
 
-const indexName = "index-08a83f56f55ae2aed3d2b78c58d2645c"
-
 func buildIndexTemplate(context ctx.BackgroundContext) *template.Template {
 	indexUriReverse := uri.Reverse{
 		"IAmAlive": uri.IAmAlive,
@@ -18,7 +16,6 @@ func buildIndexTemplate(context ctx.BackgroundContext) *template.Template {
 	}
 
 	funcMaps := template.FuncMap{
-		"index":    func(context ctx.Context) HomeViewIndexData { return context.Data(indexName).(HomeViewIndexData) },
 		"indexUri": func() uri.Reverse { return indexUriReverse },
 	}
 
@@ -29,10 +26,10 @@ type HomeViewIndexData struct {
 	Expiry string
 }
 
-const indexTemplate = `{{ define "content" }}{{- $index := index . -}}{{- $uri := indexUri -}}
+const indexTemplate = `{{ define "content" }}{{- $uri := indexUri -}}
 <p>Hello, please report by pressing a button</p>
 
-<pre>Expires: <span id="expiry">{{ $index.Expiry }}</span> <span id="alert"></span></pre>
+<pre>Expires: <span id="expiry">{{ .Data.Expiry }}</span> <span id="alert"></span></pre>
 
 <div class="clickReport btn btn-success mt-3 mb-3" data-confirm="false" data-uri='{{ $uri.Print "IAmAlive" }}' style="width: 100%">I am Alive</div>
 

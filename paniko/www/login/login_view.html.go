@@ -19,24 +19,24 @@ func buildLoginTemplate(context ctx.BackgroundContext) *template.Template {
 	return template.Must(shared.CloneMasterTemplate(context).Funcs(funcMaps).Parse(loginTemplate))
 }
 
-const loginTemplate = `{{ define "content" }}{{ $form := form . }}{{ $csrf := csrf . }}{{ $fH := formHelper }}
+const loginTemplate = `{{ define "content" }}{{ $csrf := csrf . }}{{ $fH := formHelper }}
 
-{{ if $form.Attempt }}
+{{ if .Form.Attempt }}
 <div class="alert alert-danger">Failed to login, try again.</div>
 {{ end }}
 
 <form method="post" novalidate>
-	{{ $csrf.TokenField }}{{ $fH.Set $form.Attempt $form.Valid }}
-	<input type="hidden" name="uri" value="{{ $form.Uri }}">
+	{{ $csrf.TokenField }}{{ $fH.Set .Form.Attempt .Form.Valid }}
+	<input type="hidden" name="uri" value="{{ .Form.Uri }}">
 	<div class="form-group">
 		<label for="username">Username</label>
-		<input class="form-control {{ $fH.ValidClass $form.UsernameErr }}" type="text" value="{{$form.Username}}" name="username" id="username">
-		{{ $fH.CheckErr $form.UsernameErr }}
+		<input class="form-control {{ $fH.ValidClass .Form.UsernameErr }}" type="text" value="{{.Form.Username}}" name="username" id="username">
+		{{ $fH.CheckErr .Form.UsernameErr }}
 	</div>
 	<div class="form-group">
 		<label for="password">Password</label>
-		<input class="form-control {{ $fH.ValidClass $form.PasswordErr }}" type="password" value="" name="password" id="password">
-		{{ $fH.CheckErr $form.PasswordErr }}
+		<input class="form-control {{ $fH.ValidClass .Form.PasswordErr }}" type="password" value="" name="password" id="password">
+		{{ $fH.CheckErr .Form.PasswordErr }}
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>

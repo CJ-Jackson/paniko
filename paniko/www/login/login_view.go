@@ -27,9 +27,16 @@ type loginView struct {
 }
 
 func (v loginView) LoginTemplate(context ctx.Context, form LoginForm) {
-	context.SetTitle("Login")
-	context.SetData(loginDataName, form)
+	type Context struct {
+		ctx.Context
+		Form LoginForm
+	}
 
-	err := v.loginTemplate.Execute(context.ResponseWriter(), context)
+	context.SetTitle("Login")
+
+	err := v.loginTemplate.Execute(context.ResponseWriter(), Context{
+		Context: context,
+		Form:    form,
+	})
 	v.errorService.CheckErrorAndLog(err)
 }

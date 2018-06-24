@@ -8,7 +8,7 @@ golang, which means not using any side effect all.
 It's made testing a lot more easier as I did not have to worry about a init function getting executed by accident, 
 I don't want to accidently read the config file while running the test.  Instead of having an init function, I write 
 boot functions that get execute by the
-[main function](https://github.com/CJ-Jackson/paniko/blob/master/cmd/paniko/main.go) and does get executed while running the
+[main function](https://github.com/CJ-Jackson/paniko/blob/master/cmd/paniko/main.go) and does not get executed while running the
 test.
 
 I like a fact that I can use lamba (closures) to link a controller to the router
